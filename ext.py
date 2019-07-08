@@ -15,8 +15,8 @@ def patch_meta(meta):
     :param meta:
     :return:
     """
-    env_support_email = os.environ.get('COMPOSER_SUPPORT_EMAIL', 'support@example.com')
-    env_support_docs = os.environ.get('COMPOSER_SUPPORT_DOCS', 'http://docs.example.com')
+    env_support_email = os.getenv('COMPOSER_SUPPORT_EMAIL') or 'support@example.com'
+    env_support_docs = os.getenv('COMPOSER_SUPPORT_DOCS') or 'http://docs.example.com'
 
     s = getattr(meta, 'support', {})
     s.update({
@@ -29,13 +29,13 @@ def patch_meta(meta):
 
 def make_signature():
     d = datetime.datetime.now()
-    env_signature = os.environ.get('SOURCES_SIGNATURE', 'Copyright {date.year}. All rights reserved.\nSee LICENSE.txt for license details.')
+    env_signature = os.getenv('SOURCES_SIGNATURE') or 'Copyright {date.year}. All rights reserved.\nSee LICENSE.txt for license details.'
     return env_signature.format(date=d)
 
 
 def make_license():
 
-    return "See {url}".format(url=os.environ.get("LICENSE_URL", "https://example.com/license.txt"))
+    return "See {url}".format(url=(os.getenv("LICENSE_URL") or "https://example.com/license.txt"))
 
 
 @click.group()

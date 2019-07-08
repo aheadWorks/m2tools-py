@@ -23,7 +23,7 @@ def zipdir(path, ziph, relpath=None):
 
             st = os.stat(os.path.join(root, file))
             info.external_attr = (st[0] | stat.S_IROTH) << 16
-            with open(os.path.join(root, file)) as f:
+            with open(os.path.join(root, file), 'rb') as f:
                 data = f.read()
                 ziph.writestr(info, data, zipfile.ZIP_DEFLATED)
 
