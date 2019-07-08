@@ -18,7 +18,7 @@ def zipdir(path, ziph, relpath=None):
 
     for root, dirs, files in os.walk(path):
         for file in files:
-            info = zipfile.ZipInfo(os.path.join(os.path.relpath(root, relpath), file))
+            info = zipfile.ZipInfo(os.path.join(os.path.relpath(root, relpath), file).replace('./', ''))
             info.date_time = time.localtime()
 
             st = os.stat(os.path.join(root, file))
