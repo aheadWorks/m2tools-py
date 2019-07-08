@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+echo "==> Dockerfile: $DOCKERFILE_PATH"
+echo "==> Image name: $IMAGE_NAME"
+
+docker build --build-arg LICENSE_URL="$LICENSE_URL" --build-arg SOURCES_SIGNATURE="$SOURCES_SIGNATURE" --build-arg COMPOSER_SUPPORT_EMAIL="$COMPOSER_SUPPORT_EMAIL" --build-arg COMPOSER_SUPPORT_DOCS="$COMPOSER_SUPPORT_DOCS" -f $DOCKERFILE_PATH -t $IMAGE_NAME .
